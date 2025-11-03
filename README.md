@@ -33,13 +33,50 @@ Copy → Paste → Deploy in **2 minutes**.
 > Run: `python tools/explain_shap.py --model prod_v3`
 
 ---
+## Layer 2 – Accountability  
+*“Who signs off if the AI goes wrong?”*
 
-## Layer 2 – Traceability  
+> **Goal:** Every AI decision has a **named human owner** — no black-box blame.
+
+---
+
+### Ethics Review Board (Notion Database)
+
+| Project | Risk Tier | Owner | Status | Next Review |
+|--------|-----------|-------|--------|-------------|
+| Loan Approval AI | High | `@alice.smith` | Active | 2025-12-01 |
+| Resume Screener | High | `@bob.chen` | Under Review | 2025-11-15 |
+| Chatbot Pro | Low | `@carol.wong` | Approved | 2026-03-01 |
+| Image Tagger | Low | `@dave.kim` | Approved | 2026-01-10 |
+
+**Click any row → View full sign-off log**
+
+---
+
+### Escalation Matrix (Auto-Triggered)
+
+| Trigger | Action | Owner | Slack Channel |
+|-------|--------|-------|---------------|
+| Bias > 5 % | **Pause model** + notify | `@ethics-board` | `#ai-ethics-alerts` |
+| PII detected | **Quarantine data** | `@security` | `#data-leak` |
+| R² < 0.85 | **Retraining required** | `@ml-ops` | `#model-drift` |
+| User complaint | **Human review in 24h** | `@support-lead` | `#ai-feedback` |
+
+---
+
+
+
+## Layer 3 – Traceability  
 *“Where did this number come from?”*
 
 ```mermaid
 graph LR
     A[Raw CSV] --> B[dbt seed]
     B --> C[MLflow Run]
-    C --> D[Prediction ID]
-    
+    C --> D[Prediction ID] 
+ 
+
+
+  
+
+
